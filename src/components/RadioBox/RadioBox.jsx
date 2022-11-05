@@ -3,10 +3,18 @@ import PropTypes from 'prop-types';
 
 import styles from './RadioBox.module.css';
 
-const RadioBox = ({ name }) => {
+const RadioBox = ({ name, selectedItem }) => {
+  const isChecked = name === selectedItem;
+
   return (
     <div className={`${styles.radioBox}`}>
-      <input type='radio' name={name} value={name} />
+      <input
+        type='radio'
+        name={name}
+        id={name}
+        value={name}
+        checked={isChecked}
+      />
       <label htmlFor={name}>{name}</label>
     </div>
   );
