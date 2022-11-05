@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 
 import { CATEGORIES, PACE } from '../../constants';
 
-import styles from './Settings.module.css';
 import RadioBox from '../RadioBox/RadioBox';
+import Counter from '../Counter/Counter';
+
+import styles from './Settings.module.css';
 
 const Settings = () => {
   const [category, setCategory] = useState(CATEGORIES[0]);
@@ -24,6 +26,11 @@ const Settings = () => {
             onChange={(e) => setCategory(e.target.value)}
           />
         ))}
+      </div>
+
+      <h4>Amount of cards:</h4>
+      <div className={`${styles.setting}`}>
+        <Counter />
       </div>
 
       <h4>Pace:</h4>
