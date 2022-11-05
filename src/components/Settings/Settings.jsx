@@ -8,10 +8,14 @@ import Counter from '../Counter/Counter';
 
 import styles from './Settings.module.css';
 
-const Settings = () => {
+const Settings = ({ startGame }) => {
   const [category, setCategory] = useState(CATEGORIES[0]);
   const [pace, setPace] = useState(PACE[0]);
   const [cardsCount, setCardsCount] = useState(INITIAL_CARDS_COUNT);
+
+  const onStartGameClick = () => {
+    startGame({ category, pace, cardsCount }); // changed to object
+  };
 
   return (
     <div className={`${styles.settings} frosted`}>
@@ -46,7 +50,9 @@ const Settings = () => {
         ))}
       </div>
 
-      <button className={`${styles.button} frosted`}>Start</button>
+      <button className={`${styles.button} frosted`} onClick={onStartGameClick}>
+        Start
+      </button>
     </div>
   );
 };
