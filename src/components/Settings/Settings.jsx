@@ -45,6 +45,8 @@ const Settings = () => {
           />
         ))}
       </div>
+
+      <button className={`${styles.button} frosted`}>Start</button>
     </div>
   );
 };
