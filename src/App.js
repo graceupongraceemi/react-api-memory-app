@@ -2,12 +2,10 @@ import Background from './components/Background';
 
 import useGetImages from './hooks/useGetImages';
 
-// const getRandomPage = () => Math.round(Math.random() * (10 - 1) + 1);
-
-// const BASE_URL = 'https://api.pexels.com/v1/search?query=nature';
-
 function App() {
-  useGetImages();
+  const images = useGetImages();
+
+  console.log({ images });
 
   return (
     <>
