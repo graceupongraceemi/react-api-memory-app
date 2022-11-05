@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { CATEGORIES, PACE } from '../../constants';
+import { CATEGORIES, PACE, INITIAL_CARDS_COUNT } from '../../constants';
 
 import RadioBox from '../RadioBox/RadioBox';
 import Counter from '../Counter/Counter';
@@ -11,6 +11,7 @@ import styles from './Settings.module.css';
 const Settings = () => {
   const [category, setCategory] = useState(CATEGORIES[0]);
   const [pace, setPace] = useState(PACE[0]);
+  const [cardsCount, setCardsCount] = useState(INITIAL_CARDS_COUNT);
 
   return (
     <div className={`${styles.settings} frosted`}>
@@ -30,7 +31,7 @@ const Settings = () => {
 
       <h4>Amount of cards:</h4>
       <div className={`${styles.setting}`}>
-        <Counter />
+        <Counter cardsCount={cardsCount} onClick={setCardsCount} />
       </div>
 
       <h4>Pace:</h4>
