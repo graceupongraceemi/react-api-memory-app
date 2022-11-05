@@ -16,7 +16,12 @@ const Settings = () => {
       <h4>Category</h4>
       <div className={`${styles.setting}`}>
         {CATEGORIES.map((item) => (
-          <RadioBox key={item} name={item} selectedItem={category} />
+          <RadioBox
+            key={item}
+            name={item}
+            selectedItem={category}
+            onChange={(e) => setCategory(e.target.value)}
+          />
         ))}
       </div>
     </div>
