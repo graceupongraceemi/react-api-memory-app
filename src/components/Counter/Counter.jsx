@@ -5,6 +5,7 @@ import './Counter.css';
 
 const STEP = 2;
 
+// changed to object prop
 const Counter = ({ cardsCount, onClick }) => {
   const onDecrement = (e) => {
     e.preventDefault();

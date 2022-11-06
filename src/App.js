@@ -1,5 +1,7 @@
 import { useState } from 'react';
+
 import Background from './components/Background';
+import Board from './components/Board';
 import Settings from './components/Settings';
 
 import useGetImages from './hooks/useGetImages';
@@ -19,6 +21,7 @@ function App() {
       <Background />
       <h1>Memory Game</h1>
       <Settings startGame={startGame} />
+      {images.length > 0 && <Board />}
     </>
   );
 }

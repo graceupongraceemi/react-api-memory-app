@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import { CATEGORIES, PACE, INITIAL_CARDS_COUNT } from '../../constants';
 
-import RadioBox from '../RadioBox/RadioBox';
-import Counter from '../Counter/Counter';
+import RadioBox from '../RadioBox';
+import Counter from '../Counter';
 
 import styles from './Settings.module.css';
 
@@ -21,7 +21,7 @@ const Settings = ({ startGame }) => {
     <div className={`${styles.settings} frosted`}>
       <h2>Settings</h2>
 
-      <h4>Category</h4>
+      <h4>Category:</h4>
       <div className={`${styles.setting}`}>
         {CATEGORIES.map((item) => (
           <RadioBox
@@ -58,3 +58,7 @@ const Settings = ({ startGame }) => {
 };
 
 export default Settings;
+
+Settings.propType = {
+  startGame: PropTypes.func.isRequired
+};
