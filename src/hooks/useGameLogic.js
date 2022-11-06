@@ -24,7 +24,7 @@ const useGameLogic = (images) => {
     const a = getFormedData(images);
     const b = getPairedPics(a);
     const c = addUniqueIds(b);
-    const d = shuffleCards(c);
+    const d = shuffleCards(c); // (d) needs to be sest aa cards
     setCards(d);
   };
 

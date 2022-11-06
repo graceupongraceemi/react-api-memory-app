@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Loader from './../Loader';
+import Card from './../Card';
 
 import useGetImages from './../../hooks/useGetImages';
 
@@ -18,7 +19,13 @@ const Board = ({ gameOptions }) => {
     if (images.length > 0) setIsLoading(false);
   }, [images]);
 
-  return <div>{isLoading && <Loader />}</div>;
+  return (
+    <div>
+      {isLoading && <Loader />}
+      {!isLoading &&
+        cards.map((card) => <Card key={card.uniqueId} card={card} />)}
+    </div>
+  );
 };
 
 export default Board;
