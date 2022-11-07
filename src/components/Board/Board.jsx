@@ -21,9 +21,11 @@ const Board = ({ gameOptions }) => {
 
   return (
     <div>
-      {isLoading && <Loader />}
-      {!isLoading &&
-        cards.map((card) => <Card key={card.uniqueId} card={card} />)}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        cards.map((card) => <Card key={card.uniqueId} card={card} />)
+      )}
     </div>
   );
 };
@@ -33,7 +35,6 @@ export default Board;
 Board.propTypes = {
   gameOptions: PropTypes.shape({
     pace: PropTypes.string.isRequired,
-    cardsCount: PropTypes.number.isRequired,
     category: PropTypes.string.isRequired
   })
 };
