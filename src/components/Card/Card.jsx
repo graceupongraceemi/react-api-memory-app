@@ -25,3 +25,13 @@ const Card = ({ card, onCardClick }) => {
 };
 
 export default Card;
+
+Card.propTypes = {
+  card: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    uniqueId: PropTypes.string.isRequired,
+    isShown: PropTypes.bool.isRequired,
+    isFound: PropTypes.bool.isRequired
+  }),
+  onCardClick: PropTypes.func.isRequired
+};
