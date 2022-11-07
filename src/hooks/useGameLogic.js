@@ -28,8 +28,22 @@ const useGameLogic = (images) => {
     setCards(d);
   };
 
-  const onCardClick = (uniqueId) => {
-    console.log({ uniqueId });
+  const flipCard = (clickedCardId) => {
+    console.log('flipCard', clickedCardId); // Will be shown in console
+    const flippedCards = cards.map((card) => {
+      if (card.uniqueId === clickedCardId) {
+        card.isShown = true;
+      }
+
+      return card;
+    });
+
+    setCards(flippedCards);
+  };
+
+  const onCardClick = (clickedCardId) => {
+    console.log({ clickedCardId }); // Will be shown in console
+    flipCard(clickedCardId);
   };
 
   useEffect(() => {
