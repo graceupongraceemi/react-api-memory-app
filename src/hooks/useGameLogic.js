@@ -32,7 +32,7 @@ const useGameLogic = (images) => {
   };
 
   const flipCard = (clickedCardId) => {
-    console.log('flipCard', clickedCardId); // Will be shown in console
+    // console.log('flipCard', clickedCardId);
     const flippedCards = cards.map((card) => {
       if (card.uniqueId === clickedCardId) {
         card.isShown = true;
@@ -47,7 +47,6 @@ const useGameLogic = (images) => {
   };
 
   const onCardClick = (clickedCardId) => {
-    // console.log({ clickedCardId }); // Will be shown in console
     if (visibleCards.length < MAX_VISIBLE_CARDS) {
       flipCard(clickedCardId);
     }
@@ -56,6 +55,22 @@ const useGameLogic = (images) => {
   useEffect(() => {
     if (images.length > 0) prepareCards();
   }, [images]);
+
+  useEffect(() => {
+    if (visibleCards.length >= MAX_VISIBLE_CARDS) {
+      const updatedCards = cards.map((card) => {
+        if (visibleCards.indexOf(card.uniqueId) !== -1) {
+          card.isShown = false;
+        }
+
+        return card;
+      });
+
+      setTimeout(() => {
+        setVisibleCards([]);
+      }, 1000);
+    }
+  }, [visibleCards]);
 
   return { cards, onCardClick };
 };
