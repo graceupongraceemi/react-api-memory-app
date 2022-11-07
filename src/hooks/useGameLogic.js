@@ -19,7 +19,14 @@ import {
 
 const MAX_VISIBLE_CARDS = 2;
 
-const useGameLogic = (images) => {
+const PACES = {
+  easy: 1500,
+  medium: 1000,
+  hard: 500,
+  pro: 200
+};
+
+const useGameLogic = (images, gamePace) => {
   const [cards, setCards] = useState([]);
   const [visibleCards, setVisibleCards] = useState([]);
 
@@ -68,7 +75,8 @@ const useGameLogic = (images) => {
 
       setTimeout(() => {
         setVisibleCards([]);
-      }, 1000);
+        // }, 1000);
+      }, PACES[gamePace]);
     }
   }, [visibleCards]);
 

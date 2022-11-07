@@ -13,7 +13,7 @@ const Board = ({ gameOptions }) => {
   const [isLoading, setIsLoading] = useState(true);
   const images = useGetImages(gameOptions);
   // console.log({ images });
-  const { cards, onCardClick } = useGameLogic(images);
+  const { cards, onCardClick } = useGameLogic(images, gameOptions.pace);
 
   useEffect(() => {
     if (images.length > 0) setIsLoading(false);
