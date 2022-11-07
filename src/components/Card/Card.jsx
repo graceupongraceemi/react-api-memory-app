@@ -29,7 +29,7 @@ export default Card;
 Card.propTypes = {
   card: PropTypes.shape({
     url: PropTypes.string.isRequired,
-    uniqueId: PropTypes.string.isRequired,
+    uniqueId: PropTypes.number.isRequired,
     isShown: PropTypes.bool.isRequired,
     isFound: PropTypes.bool.isRequired
   }),

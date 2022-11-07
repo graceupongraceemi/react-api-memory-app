@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Loader from './../Loader';
 import Card from './../Card';
+import Result from './../Result';
 
 import useGetImages from './../../hooks/useGetImages';
 
@@ -13,7 +14,7 @@ const Board = ({ gameOptions }) => {
   const [isLoading, setIsLoading] = useState(true);
   const images = useGetImages(gameOptions);
   // console.log({ images });
-  const { cards, onCardClick } = useGameLogic(images, gameOptions.pace);
+  const { cards, onCardClick, isWin } = useGameLogic(images, gameOptions.pace);
 
   useEffect(() => {
     if (images.length > 0) setIsLoading(false);
@@ -21,6 +22,7 @@ const Board = ({ gameOptions }) => {
 
   return (
     <div>
+      {isWin && <Result />}
       {isLoading ? (
         <Loader />
       ) : (

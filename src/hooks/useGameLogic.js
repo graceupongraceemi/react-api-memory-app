@@ -27,6 +27,8 @@ const PACES = {
 };
 
 const useGameLogic = (images, gamePace) => {
+  const [score, setScore] = useState(0);
+  const [isWin, setIsWin] = useState(false);
   const [cards, setCards] = useState([]);
   const [visibleCards, setVisibleCards] = useState([]);
 
@@ -59,6 +61,10 @@ const useGameLogic = (images, gamePace) => {
     }
   };
 
+  const updateScore = () => {
+    setScore((oldScore) => oldScore + 1);
+  };
+
   const checkMatch = () => {
     const visible = cards.filter(
       (card) => visibleCards.indexOf(card.uniqueId) !== -1
@@ -76,8 +82,9 @@ const useGameLogic = (images, gamePace) => {
     });
 
     setTimeout(() => {
+      setCards(updatedCards);
       setVisibleCards([]);
-      // }, 1000);
+      if (matched) updateScore();
     }, PACES[gamePace]);
   };
 
@@ -91,7 +98,13 @@ const useGameLogic = (images, gamePace) => {
     }
   }, [visibleCards]);
 
-  return { cards, onCardClick };
+  useEffect(() => {
+    if (images.length && score === images.length) {
+      setIsWin(true);
+    }
+  }, [score]);
+
+  return { cards, onCardClick, isWin };
 };
 
 export default useGameLogic;
