@@ -13,7 +13,7 @@ const Board = ({ gameOptions }) => {
   const [isLoading, setIsLoading] = useState(true);
   const images = useGetImages(gameOptions);
   // console.log({ images });
-  const cards = useGameLogic(images);
+  const { cards, onCardClick } = useGameLogic(images);
 
   useEffect(() => {
     if (images.length > 0) setIsLoading(false);
@@ -24,7 +24,9 @@ const Board = ({ gameOptions }) => {
       {isLoading ? (
         <Loader />
       ) : (
-        cards.map((card) => <Card key={card.uniqueId} card={card} />)
+        cards.map((card) => (
+          <Card key={card.uniqueId} card={card} onCardClick={onCardClick} />
+        ))
       )}
     </div>
   );

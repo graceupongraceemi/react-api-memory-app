@@ -28,11 +28,15 @@ const useGameLogic = (images) => {
     setCards(d);
   };
 
+  const onCardClick = (uniqueId) => {
+    console.log({ uniqueId });
+  };
+
   useEffect(() => {
     if (images.length > 0) prepareCards();
   }, [images]);
 
-  return cards;
+  return { cards, onCardClick };
 };
 
 export default useGameLogic;
