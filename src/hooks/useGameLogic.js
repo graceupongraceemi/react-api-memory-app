@@ -17,8 +17,11 @@ import {
 //   }
 // ]
 
+const MAX_VISIBLE_CARDS = 2;
+
 const useGameLogic = (images) => {
   const [cards, setCards] = useState([]);
+  const [visibleCards, setVisibleCards] = useState([]);
 
   const prepareCards = () => {
     const a = getFormedData(images);
@@ -35,6 +38,8 @@ const useGameLogic = (images) => {
         card.isShown = true;
       }
 
+      if (card.isShown)
+        setVisibleCards((oldState) => [...oldState, card.uniqueId]);
       return card;
     });
 
@@ -42,8 +47,10 @@ const useGameLogic = (images) => {
   };
 
   const onCardClick = (clickedCardId) => {
-    console.log({ clickedCardId }); // Will be shown in console
-    flipCard(clickedCardId);
+    // console.log({ clickedCardId }); // Will be shown in console
+    if (visibleCards.length < MAX_VISIBLE_CARDS) {
+      flipCard(clickedCardId);
+    }
   };
 
   useEffect(() => {
