@@ -59,24 +59,35 @@ const useGameLogic = (images, gamePace) => {
     }
   };
 
+  const checkMatch = () => {
+    const visible = cards.filter(
+      (card) => visibleCards.indexOf(card.uniqueId) !== -1
+    );
+    // console.log({ visible });
+    const matched = visible[0].id === visible[1].id;
+
+    const updatedCards = cards.map((card) => {
+      if (visibleCards.indexOf(card.uniqueId) !== -1) {
+        card.isShown = false;
+        card.isFound = matched;
+      }
+
+      return card;
+    });
+
+    setTimeout(() => {
+      setVisibleCards([]);
+      // }, 1000);
+    }, PACES[gamePace]);
+  };
+
   useEffect(() => {
     if (images.length > 0) prepareCards();
   }, [images]);
 
   useEffect(() => {
     if (visibleCards.length >= MAX_VISIBLE_CARDS) {
-      const updatedCards = cards.map((card) => {
-        if (visibleCards.indexOf(card.uniqueId) !== -1) {
-          card.isShown = false;
-        }
-
-        return card;
-      });
-
-      setTimeout(() => {
-        setVisibleCards([]);
-        // }, 1000);
-      }, PACES[gamePace]);
+      checkMatch();
     }
   }, [visibleCards]);
 
